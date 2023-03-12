@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from "react";
@@ -20,8 +20,10 @@ export function EditPage() {
 
 
 function EditPageForm({ actor, id }) {
-  const [name, setName] = useState(`${actor.name}`);
 
+  const navigate = useNavigate();
+
+  const [name, setName] = useState(`${actor.name}`);
   const [email, setEmail] = useState(`${actor.email}`);
   const [profession, setProfession] = useState(`${actor.profession}`);
   const [salary, setSalary] = useState(`${actor.salary}`);
@@ -43,6 +45,9 @@ function EditPageForm({ actor, id }) {
         "Content-Type": "application/json",
       }
     })
+
+    navigate("/")
+
   };
 
   return (
